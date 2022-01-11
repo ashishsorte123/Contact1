@@ -31,7 +31,7 @@ const RegisterComponent = ({
       />
 
       <View>
-        <Text style={styles.title}>Welcome to RNContacts</Text>
+        <Text style={styles.title}>Welcome to RN Contacts</Text>
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
