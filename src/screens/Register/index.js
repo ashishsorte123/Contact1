@@ -2,7 +2,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useContext, useState} from 'react';
 import RegisterComponent from '../../components/SignUp';
 import {LOGIN} from '../../constants/routeNames';
-import {clearAuthState} from '../../context/actions/auth/register';
+import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
 
 const Register = () => {
@@ -29,9 +29,9 @@ const Register = () => {
 
     if (value !== '') {
       if (name === 'password') {
-        if (value.length < 6) {
+        if (value.length < 8) {
           setErrors(prev => {
-            return {...prev, [name]: 'This field needs min 6 characters'};
+            return {...prev, [name]: 'This field needs min 8 characters'};
           });
         } else {
           setErrors(prev => {
@@ -51,6 +51,7 @@ const Register = () => {
   };
 
   const onSubmit = () => {
+    console.log('form :>> ', form);
     if (!form.userName) {
       setErrors(prev => {
         return {...prev, userName: 'Please add a username'};
