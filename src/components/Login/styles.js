@@ -31,7 +31,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   linkBtn: {
-    paddingLeft: 17,
+    paddingLeft: 70,
     color: colors.primary,
     fontSize: 16,
   },
