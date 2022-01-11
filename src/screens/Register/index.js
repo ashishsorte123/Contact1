@@ -4,6 +4,7 @@ import RegisterComponent from '../../components/SignUp';
 import {LOGIN} from '../../constants/routeNames';
 import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
+import envs from '../../config/env';
 
 const Register = () => {
   const [form, setForm] = useState({});
@@ -13,6 +14,12 @@ const Register = () => {
     authDispatch,
     authState: {error, loading, data},
   } = useContext(GlobalContext);
+
+  const {BACKEND_URL} = envs;
+
+  // console.log('BACKEND_URL :>> ', envs);
+  console.log('BACKEND_URL :>> ', BACKEND_URL);
+  console.log('__DEV__', __DEV__);
 
   useFocusEffect(
     React.useCallback(() => {
