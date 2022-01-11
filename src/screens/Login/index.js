@@ -11,6 +11,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (params?.data) {
+      console.log('params', params);
       setJustSignedUp(true);
       setForm({...form, userName: params.data.username});
     }
