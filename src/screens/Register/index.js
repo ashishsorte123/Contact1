@@ -5,6 +5,7 @@ import {LOGIN} from '../../constants/routeNames';
 import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
 import envs from '../../config/env';
+import axiosInstance from '../../helpers/axiosInstance';
 
 const Register = () => {
   const [form, setForm] = useState({});
@@ -17,9 +18,15 @@ const Register = () => {
 
   const {BACKEND_URL} = envs;
 
-  // console.log('BACKEND_URL :>> ', envs);
+  console.log('BACKEND_URL :>> ', envs);
   console.log('BACKEND_URL :>> ', BACKEND_URL);
   console.log('__DEV__', __DEV__);
+
+  React.useEffect(() => {
+    axiosInstance.get('/contacts').catch(err => {
+      console.log('err', err.response);
+    });
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
