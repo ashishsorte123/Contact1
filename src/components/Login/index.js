@@ -44,7 +44,7 @@ const LoginComponent = ({
             <Message
               onDismiss={() => {}}
               danger
-              message="invalid credentials"
+              message="Invalid credentials"
             />
           )}
 

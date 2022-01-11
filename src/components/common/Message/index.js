@@ -1,10 +1,5 @@
-import {useFocusEffect} from '@react-navigation/native';
 import React from 'react';
-import {useCallback} from 'react';
-import {useEffect} from 'react';
-import {View, Text, TextInput, ActivityIndicator} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
+import {View, Text, TouchableOpacity} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
 

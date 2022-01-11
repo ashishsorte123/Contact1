@@ -1,10 +1,7 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useContext, useState} from 'react';
-import {Text, View} from 'react-native';
-import Container from '../../components/common/Container';
-import CustomButton from '../../components/common/CustomButton';
-import Input from '../../components/common/Input';
 import LoginComponent from '../../components/Login';
+import loginUser from '../../context/actions/auth/loginUser';
 import {GlobalContext} from '../../context/Provider';
 
 const Login = () => {

@@ -19,10 +19,12 @@ const Register = () => {
 
   useFocusEffect(
     React.useCallback(() => {
+      // console.log('111 :>> ', 111);
       return () => {
         if (data || error) {
           clearAuthState()(authDispatch);
         }
+        // console.log('222 :>> ', 222);
       };
     }, [data, error]),
   );
