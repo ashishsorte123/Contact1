@@ -11,7 +11,6 @@ const Login = () => {
 
   React.useEffect(() => {
     if (params?.data) {
-      console.log('params', params);
       setJustSignedUp(true);
       setForm({...form, userName: params.data.username});
     }
@@ -32,10 +31,11 @@ const Login = () => {
     setJustSignedUp(false);
     setForm({...form, [name]: value});
   };
+
   return (
     <LoginComponent
-      onSubmit={onSubmit}
       onChange={onChange}
+      onSubmit={onSubmit}
       form={form}
       error={error}
       loading={loading}

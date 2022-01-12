@@ -25,11 +25,11 @@ const Message = ({
     if (success) {
       return colors.success;
     }
-
     if (info) {
       return colors.secondary;
     }
   };
+
   return (
     <>
       {userDismissed ? null : (

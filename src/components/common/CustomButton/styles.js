@@ -22,7 +22,7 @@ export default StyleSheet.create({
 
   error: {
     color: colors.danger,
-    paddingTop: 4,
+    paddingTop: 5,
     fontSize: 12,
   },
 });

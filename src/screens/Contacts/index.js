@@ -9,9 +9,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Contacts = () => {
   const [sortBy, setSortBy] = React.useState(null);
+
   const {setOptions, toggleDrawer} = useNavigation();
+
   const [modalVisible, setModalVisible] = useState(false);
+
   const contactsRef = useRef([]);
+
   const {
     contactsDispatch,
     contactsState: {
@@ -40,7 +44,14 @@ const Contacts = () => {
     }, []),
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
+    contactsRef.current = true;
+    return () => {
+      contactsRef.current = false;
+    };
+  }, []);
+
+  React.useEffect(() => {
     const prev = contactsRef.current;
     contactsRef.current = data;
     const newList = contactsRef.current;

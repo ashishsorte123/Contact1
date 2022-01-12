@@ -58,6 +58,6 @@ export default StyleSheet.create({
   },
 
   footerText: {
-    fontSize: 12,
+    fontSize: 13,
   },
 });

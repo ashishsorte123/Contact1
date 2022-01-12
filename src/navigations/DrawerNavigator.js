@@ -8,6 +8,7 @@ import {GlobalContext} from '../context/Provider';
 const getDrawerContent = (navigation, authDispatch) => {
   return <SideMenu navigation={navigation} authDispatch={authDispatch} />;
 };
+
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
   const {authDispatch} = React.useContext(GlobalContext);
@@ -17,7 +18,9 @@ const DrawerNavigator = () => {
       drawerContent={({navigation}) =>
         getDrawerContent(navigation, authDispatch)
       }>
-      <Drawer.Screen name={HOME_NAVIGATOR} component={HomeNavigator} />
+      <Drawer.Screen
+        name={HOME_NAVIGATOR}
+        component={HomeNavigator}></Drawer.Screen>
     </Drawer.Navigator>
   );
 };

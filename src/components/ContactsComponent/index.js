@@ -39,7 +39,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
   };
 
   const renderItem = ({item}) => {
-    console.log('item', item);
+    // console.log('item', item);
     const {contact_picture, first_name, country_code, phone_number, last_name} =
       item;
 
@@ -136,6 +136,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
       </Swipeable>
     );
   };
+
   return (
     <>
       <View style={{backgroundColor: colors.white, flex: 1}}>
@@ -186,7 +187,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
         onPress={() => {
           navigate(CREATE_CONTACT);
         }}>
-        <Icon name="plus" size={21} color={colors.white} />
+        <Icon name="plus" size={25} color={colors.white} />
       </TouchableOpacity>
     </>
   );

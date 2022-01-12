@@ -8,6 +8,7 @@ import Input from '../../components/common/Input';
 import {REGISTER} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
+import {scale} from 'react-native-size-matters';
 
 const LoginComponent = ({
   error,
@@ -22,8 +23,8 @@ const LoginComponent = ({
   return (
     <Container>
       <Image
-        height={70}
-        width={70}
+        height={scale(70)}
+        width={scale(70)}
         source={require('../../assets/images/logo.png')}
         style={styles.logoImage}
       />
@@ -37,7 +38,7 @@ const LoginComponent = ({
             <Message
               onDismiss={() => {}}
               success
-              message="Account created successfully"
+              message="Account created successfully !!!"
             />
           )}
           {error && !error.error && (

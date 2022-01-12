@@ -1,20 +1,18 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  logoImage: {
-    height: 150,
-    width: 150,
-    marginTop: 50,
-  },
-
-  item: {
+  pickerOption: {
     flexDirection: 'row',
+    paddingTop: 20,
     alignItems: 'center',
   },
 
-  itemText: {
+  optionsWrapper: {
+    paddingHorizontal: 20,
+  },
+
+  text: {
     fontSize: 17,
-    paddingVertical: 7,
-    paddingLeft: 20,
+    paddingLeft: 17,
   },
 });

@@ -3,8 +3,8 @@ import colors from '../../../assets/theme/colors';
 
 export default StyleSheet.create({
   wrapper: {
-    height: 42,
-    paddingHorizontal: 5,
+    height: 46,
+    paddingHorizontal: 12,
     paddingVertical: 13,
     marginVertical: 5,
     borderRadius: 4,
@@ -21,7 +21,7 @@ export default StyleSheet.create({
 
   error: {
     color: colors.danger,
-    paddingTop: 4,
+    paddingTop: 5,
     fontSize: 12,
   },
 });

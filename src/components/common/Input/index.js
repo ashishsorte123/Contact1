@@ -35,6 +35,7 @@ const Input = ({
       return colors.grey;
     }
   };
+
   return (
     <View style={styles.inputContainer}>
       {label && <Text>{label}</Text>}

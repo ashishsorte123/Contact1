@@ -1,11 +1,140 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {ActivityIndicator, Alert, TouchableOpacity, View} from 'react-native';
+import colors from '../../assets/theme/colors';
+import Icon from '../../components/common/Icon';
+import ContactDetailsComponent from '../../components/ContactDetailsComponent';
+import {CONTACT_LIST} from '../../constants/routeNames';
+import deleteContact from '../../context/actions/contacts/deleteContact';
+import editContact from '../../context/actions/contacts/editContact';
+import {GlobalContext} from '../../context/Provider';
+import uploadImage from '../../helpers/uploadImage';
 
 const ContactDetail = () => {
+  const {params: {item = {}} = {}} = useRoute();
+
+  const {
+    contactsDispatch,
+    contactsState: {
+      deleteContact: {loading},
+    },
+  } = useContext(GlobalContext);
+
+  const {setOptions, navigate} = useNavigation();
+  const sheetRef = useRef(null);
+  const [localFile, setLocalFile] = useState(null);
+  const [updatingImage, setUpdatingImage] = useState(false);
+  const [uploadSucceeded, setUploadSucceeded] = useState(false);
+
+  useEffect(() => {
+    if (item) {
+      setOptions({
+        title: item.first_name + ' ' + item.last_name,
+        headerRight: () => {
+          return (
+            <View style={{flexDirection: 'row', paddingRight: 20}}>
+              <TouchableOpacity>
+                <Icon
+                  size={21}
+                  color={colors.grey}
+                  name={item.is_favorite ? 'star' : 'star-border'}
+                  type="material"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  Alert.alert(
+                    'Delete !!!',
+                    'Are you sure you want to remove  ' + item.first_name,
+                    [
+                      {
+                        text: 'No',
+                        onPress: () => {},
+                      },
+                      {
+                        text: 'Yes',
+                        onPress: () => {
+                          deleteContact(item.id)(contactsDispatch)(() => {
+                            navigate(CONTACT_LIST);
+                          });
+                        },
+                      },
+                    ],
+                  );
+                }}
+                style={{paddingLeft: 20}}>
+                {loading ? (
+                  <ActivityIndicator size="small" color={colors.primary} />
+                ) : (
+                  <Icon
+                    size={21}
+                    color={colors.grey}
+                    name="delete"
+                    type="material"
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+          );
+        },
+      });
+    }
+  }, [item, loading]);
+
+  const closeSheet = () => {
+    if (sheetRef.current) {
+      sheetRef.current.close();
+    }
+  };
+
+  const openSheet = () => {
+    if (sheetRef.current) {
+      sheetRef.current.open();
+    }
+  };
+
+  const onFileSelected = image => {
+    closeSheet();
+    setLocalFile(image);
+    setUpdatingImage(true);
+    uploadImage(image)(url => {
+      const {
+        first_name: firstName,
+        last_name: lastName,
+        phone_number: phoneNumber,
+        country_code: phoneCode,
+        is_favorite: isFavorite,
+      } = item;
+      editContact(
+        {
+          firstName,
+          lastName,
+          phoneNumber,
+          isFavorite,
+          phoneCode,
+          contactPicture: url,
+        },
+        item.id,
+      )(contactsDispatch)(() => {
+        setUpdatingImage(false);
+        setUploadSucceeded(true);
+      });
+    })(err => {
+      console.log('err :>> ', err);
+      setUpdatingImage(false);
+    });
+  };
+
   return (
-    <View>
-      <Text>Hi from ContactDetail</Text>
-    </View>
+    <ContactDetailsComponent
+      sheetRef={sheetRef}
+      onFileSelected={onFileSelected}
+      openSheet={openSheet}
+      contact={item}
+      localFile={localFile}
+      uploadSucceeded={uploadSucceeded}
+      updatingImage={updatingImage}
+    />
   );
 };
 

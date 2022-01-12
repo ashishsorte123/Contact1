@@ -1,14 +1,18 @@
-import {useNavigation} from '@react-navigation/native';
-import {useFocusEffect} from '@react-navigation/native';
-import React from 'react';
-import {useContext} from 'react';
-import {useState} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import React, {useContext, useState} from 'react';
 import RegisterComponent from '../../components/SignUp';
 import {LOGIN} from '../../constants/routeNames';
 import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
+import envs from '../../config/env';
 
 const Register = () => {
+  // const {BACKEND_URL} = envs;
+  // console.log('BACKEND_URL :>> ', BACKEND_URL);
+  // console.log('__DEV__', __DEV__);
+
+  // console.log('form', form);
+
   const [form, setForm] = useState({});
   const {navigate} = useNavigation();
   const [errors, setErrors] = useState({});
@@ -32,9 +36,9 @@ const Register = () => {
 
     if (value !== '') {
       if (name === 'password') {
-        if (value.length < 6) {
+        if (value.length < 8) {
           setErrors(prev => {
-            return {...prev, [name]: 'This field needs min 6 characters'};
+            return {...prev, [name]: 'This field needs min 8 characters'};
           });
         } else {
           setErrors(prev => {
@@ -54,6 +58,7 @@ const Register = () => {
   };
 
   const onSubmit = () => {
+    console.log('form', form);
     if (!form.userName) {
       setErrors(prev => {
         return {...prev, userName: 'Please add a username'};

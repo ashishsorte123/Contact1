@@ -1,8 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-
-import {Image, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Image, Text, View, TouchableOpacity} from 'react-native';
 import Container from '../../components/common/Container';
 import CustomButton from '../../components/common/CustomButton';
 import Input from '../../components/common/Input';
@@ -10,14 +8,7 @@ import {LOGIN} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
 
-const RegisterComponent = ({
-  onSubmit,
-  onChange,
-  form,
-  loading,
-  error,
-  errors,
-}) => {
+const RegisterComponent = ({onSubmit, onChange, loading, error, errors}) => {
   const {navigate} = useNavigation();
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
