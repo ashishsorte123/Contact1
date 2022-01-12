@@ -6,6 +6,8 @@ import ContactsComponent from '../../components/ContactsComponent';
 import getContacts from '../../context/actions/contacts/getContacts';
 import {GlobalContext} from '../../context/Provider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {navigate} from '../../navigations/SideMenu/RootNavigator';
+import {CONTACT_DETAIL} from '../../constants/routeNames';
 
 const Contacts = () => {
   const [sortBy, setSortBy] = React.useState(null);
