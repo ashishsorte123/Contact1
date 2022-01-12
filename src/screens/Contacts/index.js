@@ -19,7 +19,8 @@ const Contacts = () => {
     },
   } = useContext(GlobalContext);
 
-  console.log('contactsState :>> ', getContacts);
+  console.log('data', data);
+  console.log('loading', loading);
 
   useEffect(() => {
     getContacts()(contactsDispatch);
