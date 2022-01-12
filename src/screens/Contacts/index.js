@@ -19,6 +19,8 @@ const Contacts = () => {
     },
   } = useContext(GlobalContext);
 
+  console.log('contactsState :>> ', getContacts);
+
   useEffect(() => {
     getContacts()(contactsDispatch);
   }, []);

@@ -22,7 +22,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
   const swipeableItemRefs = useRef([]);
   // console.log('swipeableItemRefs', swipeableItemRefs);
 
-  const toggleSwipeable = (key) => {
+  const toggleSwipeable = key => {
     swipeableItemRefs.current.forEach((ref, i) => {
       if (ref.id !== key) {
         swipeableItemRefs.current?.[i]?.swipeable?.close();
@@ -32,17 +32,18 @@ const ContactsComponent = ({sortBy, data, loading}) => {
 
   const ListEmptyComponent = () => {
     return (
-      <View style={{paddingVertical: 100, paddingHorizontal: 100}}>
-        <Message info message="No contacts to show" />
+      <View style={{paddingVertical: 170, paddingHorizontal: 100}}>
+        <Message info message="  No contacts to show" />
       </View>
     );
   };
 
   const renderItem = ({item}) => {
+    console.log('item', item);
     const {contact_picture, first_name, country_code, phone_number, last_name} =
       item;
 
-    const renderLeftActions = (progress, dragX) => {
+    const renderLeftActions = () => {
       return (
         <View style={[{flexDirection: 'row', paddingRight: 5}]}>
           <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
@@ -74,7 +75,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
     const {id} = item;
     return (
       <Swipeable
-        ref={(ref) =>
+        ref={ref =>
           swipeableItemRefs.current.push({
             id,
             swipeable: ref,
@@ -172,7 +173,7 @@ const ContactsComponent = ({sortBy, data, loading}) => {
                 <View
                   style={{height: 0.5, backgroundColor: colors.grey}}></View>
               )}
-              keyExtractor={(item) => String(item.id)}
+              keyExtractor={item => String(item.id)}
               ListEmptyComponent={ListEmptyComponent}
               ListFooterComponent={<View style={{height: 150}}></View>}
             />
